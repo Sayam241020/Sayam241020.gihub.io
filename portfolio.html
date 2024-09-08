@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #121212;
+            background-color: #121212; /* Keep the body background dark */
             position: relative;
             overflow: hidden;
             padding: 20px;
@@ -79,13 +79,15 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             padding: 2rem;
             text-align: center;
-            background-color: #1E1E1E;
+            /*background-color: #2C3E50; /* Dark slate gray for pages */
             overflow-y: auto;
-            border: 2px solid #3a3a3a;
+            /*border: 2px solid #34495E; /* Slightly lighter border */
+            background-color: #25222b; /* Dark blue-green for pages */
+            border: 2px solid #2c5d7a;
         }
 
         .back {
-            background-color: #2A2A2A;
+            background-color: #25222b; /* Slightly lighter background for back page */
             transform: rotateY(180deg);
         }
 
@@ -100,15 +102,15 @@
         .link {
             margin: 0 0.5rem;
             padding: 0.5rem 1rem;
-            background-color: #333333;
-            color: #f0f0f0;
+            background-color: #080d0f; /* Darker button color */
+            color: #a3b9be; /* Light text color */
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .link:hover {
-            background-color: #4a4a4a;
+            background-color: #202327; /* Lighter color on hover */
             color: #ffffff;
         }
 
@@ -118,49 +120,138 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1rem;
-            border: 3px solid #4a4a4a;
+            border: 3px solid #5D6D7E; /* Lighter border for image */
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 4rem;
+            margin-top: 5rem;
         }
 
         .social-links a {
-            font-size: 2rem;
-            color: #b0b0b0;
-            transition: color 0.3s ease;
+            font-size: 4rem; /* Increased from 2rem to 3rem */
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #ffffff;
+            transform: scale(1.1);
         }
 
-        .education-item {
+        /* Individual color for each social icon */
+        .social-links a.facebook {
+            color: #355cb1;
+        }
+
+        .social-links a.linkedin {
+            color: #0077b5;
+        }
+
+        .social-links a.github {
+            color: #6cc644;
+        }
+
+        .social-links a.twitter {
+            color: #1da1f2;
+        }
+
+        /* Hover effects */
+        .social-links a.facebook:hover {
+            color: #4c70ba;
+        }
+
+        .social-links a.linkedin:hover {
+            color: #0097db;
+        }
+
+        .social-links a.github:hover {
+            color: #7ee856;
+        }
+
+        .social-links a.twitter:hover {
+            color: #4bb4f5;
+        }
+
+        .education-item, .hobby-item {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
-            background-color: #2C2C2C;
+            background-color: #283644; /* Slightly lighter background for items */
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border-radius: 5px;
         }
 
-        .education-item.show {
+        .education-item.show, .hobby-item.show  {
             opacity: 1;
             transform: translateY(0);
         }
 
         h1, h2 {
-            color: #f0f0f0;
+            color: #a39d9d; /* Light color for headings */
             margin-bottom: 1rem;
         }
 
         p {
             margin-bottom: 0.5rem;
-            color: #d0d0d0;
+            color: #BDC3C7; /* Light gray for text */
+        }
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .project-column {
+            width: 48%;
+        }
+
+        .project-item {
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-item.left {
+            transform: translateX(-100px);
+        }
+
+        .project-item.right {
+            transform: translateX(100px);
+        }
+
+        .project-item.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-content {
+            background-color: #2C3E50;
+            padding: 20px;
+        }
+
+        .project-item h3 {
+            margin-bottom: 10px;
+            color: #ECF0F1;
+        }
+
+        .project-item h3 a {
+            color: #b12209;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-item h3 a:hover {
+            color: #e20e0e;
+        }
+
+        .project-item p {
+            font-size: 0.9em;
+            color: #BDC3C7;
         }
     </style>
 </head>
@@ -173,7 +264,7 @@
                 <div id="frontContent">
                     <img src="my_image.jpeg" alt="Portfolio" class="profile-image">
                     <h1>Sayam Agarwal</h1>
-                    <p>Welcome to my interactive portfolio!</p>
+                    <p>Welcome to my portfolio!</p>
                 </div>
             </div>
             <div class="page back">
@@ -195,7 +286,7 @@
         let isFlipping = false;
 
         const pageContent = {
-            'Home': '<img src="my_image.jpeg" alt="Portfolio" class="profile-image"><h1>Sayam Agarwal</h1><p>Welcome to my interactive portfolio!</p>',
+            'Home': '<img src="my_image.jpeg" alt="Portfolio" class="profile-image"><h1>Sayam Agarwal</h1><p>Welcome to my portfolio!</p>',
             'Education': `
                 <h2>Education</h2>
                 <div id="educationList">
@@ -205,16 +296,60 @@
                     <p class="education-item">High School | Holy Public Junior High School Agra</p>
                 </div>
             `,
-            'Projects': '<h2>Projects</h2><p>Here are some of the projects I\'ve worked on.</p>',
-            'Hobbies': '<h2>Hobbies</h2><p>What I like to do in my free time.</p>',
-            'Story': '<h2>My Story</h2><p>This is where you can share your personal journey or any story you\'d like to tell.</p>',
+            'Projects': `
+                <h2>Projects</h2>
+                <div class="project-container">
+                    <div class="project-column">
+                        <div class="project-item left">
+                            <div class="project-content">
+                                <h3><a href="https://sayam241020.pythonanywhere.com/">snapskoot</a></h3>
+                                <p>A video conferencing application that allows multiple participants to call in to the same virtual meeting</p>
+                            </div>
+                        </div>
+                        <div class="project-item left">
+                            <div class="project-content">
+                                <h3><a href="https://sayam0603.pythonanywhere.com/">Cloudigent</a></h3>
+                                <p>It provides you the weather information of your place like cloud cover, rain, snow, wind speed, temperature dynamically</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-column">
+                        <div class="project-item right">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/Sayam241020/POSIX-Shell.git">POSIX Shell</a></h3>
+                                <p>It is implemented using C++. It includes most of functionalities like pipeline, IO redirection, history, etc.</p>
+                            </div>
+                        </div>
+                        <div class="project-item right">
+                            <div class="project-content">
+                                <h3><a href="https://github.com/Sayam241020/Marks_Prediction.git">Marks Detection Model</a></h3>
+                                <p>It is a supervised machine learning model in which students can predict their marks in their exams on the basis of number of hours they studied</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'Hobbies': `
+                <h2>Hobbies</h2>
+                <div id="hobbyList">
+                    <p class="hobby-item">Chess</p>
+                    <p class="hobby-item">Cricket</p>
+                    <p class="hobby-item">Football</p>
+                    <p class="hobby-item">Badminton</p>
+                </div>
+            `,
+            'Story': `
+        <h2>My Story</h2>
+        <p>I am a passionate tech enthusiast with a strong foundation in mathematics and a keen interest in generative AI. My primary focus is on leveraging AI to solve complex problems in medicine, healthcare, and robotics, where I believe technology can make a profound impact.</p>
+        <p>I am always eager to expand my knowledge and skills, driven by a desire to innovate and contribute to advancements in these fields. My curiosity and dedication keep me constantly exploring new technologies and approaches to stay at the forefront of this rapidly evolving landscape.</p>
+    `,
             'Contact': `
-                <h2>Contact Me</h2>
+                <h1>Contact Me</h1>
                 <div class="social-links">
-                    <a href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/divyam.agarwal.71868/" target="_blank" class="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/sayam-agarwal-001305216/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sayam241020" target="_blank" class="github"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Statist0714932" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             `
         };
@@ -242,12 +377,34 @@
                 if (section === 'Education') {
                     showEducationItems();
                 }
+                else if (section === 'Hobbies') {
+                    showHobbiesItems();
+                }
+                else if (section === 'Projects') {
+                    showProjectItems();
+                }
             }, 1000);
         }
 
         function showEducationItems() {
             const educationItems = document.querySelectorAll('.education-item');
             educationItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('show');
+                }, index * 500);
+            });
+        }
+        function showHobbiesItems() {
+            const hobbiesItems = document.querySelectorAll('.hobby-item');
+            hobbiesItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('show');
+                }, index * 500);
+            });
+        }
+        function showProjectItems() {
+            const projectItems = document.querySelectorAll('.project-item');
+            projectItems.forEach((item, index) => {
                 setTimeout(() => {
                     item.classList.add('show');
                 }, index * 500);
